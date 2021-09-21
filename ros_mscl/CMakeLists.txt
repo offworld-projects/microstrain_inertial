@@ -59,7 +59,7 @@ set(MSCL_DEB_EXTRACTED_DIR "${PROJECT_BINARY_DIR}/${MSCL_DEB_EXTRACTED_DIR_NAME}
 execute_process(
   COMMAND ${CMAKE_COMMAND} -E env /bin/bash -c "dpkg-deb -x '${MSCL_DEB_ARTIFACT}' '${MSCL_DEB_EXTRACTED_DIR}'"
 )
-set(MSCL_DIR "${MSCL_DEB_EXTRACTED_DIR}/usr/share/c++-mscl")
+set(MSCL_DIR "/usr/share/c++-mscl")
 
 
 find_library(MSCL_LIB_PATH NAMES libmscl.so PATHS "${MSCL_DIR}" DOC "MSCL Library" NO_DEFAULT_PATH)
