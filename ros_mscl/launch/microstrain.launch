@@ -19,6 +19,8 @@
   <arg name="filter_frame_id"  default = "sensor_wgs84" />
   <arg name="use_enu_frame"    default = "false" />
 
+  <rosparam command="load" file="$(find ros_mscl)/params/imu_data_retention.yaml" ns="/imu_rosbag"/>
+
   <!-- ****************************************************************** -->
   <!-- Microstrain sensor node -->
   <!-- ****************************************************************** -->

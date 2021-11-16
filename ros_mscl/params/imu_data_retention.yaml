@@ -1,0 +1,20 @@
+imu:
+  subsystem_name: "imu"
+  topics: 
+    - /cv5/device/status
+    - /cv5/imu/data
+    - /cv5/mag
+    - /cv5/nav/dual_antenna_status
+    - /cv5/nav/filtered_imu/data
+    - /cv5/nav/heading
+    - /cv5/nav/heading_state
+    - /cv5/nav/odom
+    - /cv5/nav/status
+    - /diagnostics
+    - /diagnostics_agg
+    - /diagnostics_toplevel_state
+    - /moving_ang
+    
+  storage_path: "../../microstrain_inertial/ros_mscl/data"
+  compression: false
+  encryption: false
