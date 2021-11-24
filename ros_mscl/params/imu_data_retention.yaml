@@ -3,6 +3,7 @@ imu:
   topics: 
     - /cv5/device/status
     - /cv5/imu/data
+    - /cv5/imu/euler
     - /cv5/mag
     - /cv5/nav/dual_antenna_status
     - /cv5/nav/filtered_imu/data
