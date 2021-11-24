@@ -22,6 +22,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <ctime>
+#include <tf/LinearMath/Matrix3x3.h>
 
 #include "mscl/mscl.h"
 #include "microstrain_diagnostic_updater.h"
@@ -1023,6 +1024,7 @@ void Microstrain::run()
     {
       ROS_INFO("Publishing IMU data.");
       m_imu_pub = node.advertise<sensor_msgs::Imu>("imu/data", 100);
+      m_euler_pub = node.advertise<geometry_msgs::Vector3>("imu/euler", 100);
     }
 
     //Publish IMU GPS correlation data, if enabled
@@ -1667,6 +1669,11 @@ void Microstrain::parse_imu_packet(const mscl::MipDataPacket &packet)
           m_imu_msg.orientation.w = quaternion.as_floatAt(0);
         }
       }
+
+      tf::Quaternion quat_temp;
+      quat_temp = tf::Quaternion( m_imu_msg.orientation.x, m_imu_msg.orientation.y, m_imu_msg.orientation.z, m_imu_msg.orientation.w );
+      tf::Matrix3x3(quat_temp).getRPY(m_euler_msg.x, m_euler_msg.y, m_euler_msg.z);
+
     }break;
 
     //GPS Corr
@@ -1709,6 +1716,7 @@ void Microstrain::parse_imu_packet(const mscl::MipDataPacket &packet)
   if(m_publish_imu)
   {
     m_imu_pub.publish(m_imu_msg);
+    m_euler_pub.publish(m_euler_msg);
   
     if(has_mag)
       m_mag_pub.publish(m_mag_msg);

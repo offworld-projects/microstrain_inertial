@@ -331,6 +331,7 @@ namespace Microstrain
 
   //IMU Publishers
   ros::Publisher m_imu_pub;
+  ros::Publisher m_euler_pub;
   ros::Publisher m_mag_pub;
   ros::Publisher m_gps_corr_pub;
 
@@ -364,6 +365,7 @@ namespace Microstrain
 
   //IMU Messages
   sensor_msgs::Imu           m_imu_msg;
+  geometry_msgs::Vector3     m_euler_msg;
   sensor_msgs::MagneticField m_mag_msg;
   mscl_msgs::GPSCorrelationTimestampStamped m_gps_corr_msg;
 
