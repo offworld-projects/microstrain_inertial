@@ -10,12 +10,12 @@ from launch_ros.actions import LifecycleNode
 def generate_launch_description():
       return LaunchDescription([
             # Declare arguments with default values
-            DeclareLaunchArgument('name',             default_value='gx5'),
+            DeclareLaunchArgument('name',             default_value='cv5'),
             DeclareLaunchArgument('port',             default_value='/dev/ttyACM0'),
             DeclareLaunchArgument('baudrate',         default_value='115200'),
             DeclareLaunchArgument('debug',            default_value='False'),
             DeclareLaunchArgument('diagnostics',      default_value='False'),
-            DeclareLaunchArgument('imu_frame_id',     default_value='sensor'),
+            DeclareLaunchArgument('imu_frame_id',     default_value='base_link'),
             DeclareLaunchArgument('imu_data_rate',    default_value='100'),
             DeclareLaunchArgument('filter_data_rate', default_value='10'),
             DeclareLaunchArgument('gnss1_frame_id',   default_value='gnss1_antenna_wgs84'),
