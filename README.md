@@ -63,15 +63,21 @@ We do our best to keep ROS-MSCL up-to-date with the latest MSCL changes, but som
 #### Launch the node and publish data
 The following command will launch the driver. Keep in mind each instance needs to be run in a separate terminal.
             
-        ros2 launch microstrain_inertial_driver microstrain_launch.py
+    ros2 launch microstrain_inertial_driver microstrain_launch.py
 
 This driver is implemented as a lifecycle node.  Upon running, the node will be in the unconfigured state and no interaction has occurred with the device.  The node must be transitioned as follows for data to be available:
 
-- transition to configure state: 
+#### Transition to configure state: 
 
     ros2 lifecycle set /gx5/microstrain_inertial_driver_node configure
 
-- transition to active state: 
+If this step fails and the device driver shows 'Device Disconnected', you may need to execute the following command:
+
+    sudo usermod -a -G dialout <user>
+
+This will add the user to the dialout group, which should allow the user to access the serial port to which the device is connected. A computer restart will be required following this command.
+
+#### Transition to active state: 
 
     ros2 lifecycle set /gx5/microstrain_inertial_driver_node activate
 
