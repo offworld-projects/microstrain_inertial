@@ -56,10 +56,11 @@ execute_process(
 # Extract the deb file into the workspace
 get_filename_component(MSCL_DEB_EXTRACTED_DIR_NAME "${MSCL_GITHUB_ARTIFACT}" NAME_WE)
 set(MSCL_DEB_EXTRACTED_DIR "${PROJECT_BINARY_DIR}/${MSCL_DEB_EXTRACTED_DIR_NAME}")
+set(MSCL_DIR "${MSCL_DEB_EXTRACTED_DIR}/usr/share/c++-mscl/") # NOTE: installed separately from the usual apt install folder
+
 execute_process(
   COMMAND ${CMAKE_COMMAND} -E env /bin/bash -c "dpkg-deb -x '${MSCL_DEB_ARTIFACT}' '${MSCL_DEB_EXTRACTED_DIR}'"
 )
-set(MSCL_DIR "/usr/share/c++-mscl")
 
 
 find_library(MSCL_LIB_PATH NAMES libmscl.so PATHS "${MSCL_DIR}" DOC "MSCL Library" NO_DEFAULT_PATH)
